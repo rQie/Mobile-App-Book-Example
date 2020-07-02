@@ -4,37 +4,27 @@ import React from 'react';
 import {
   View,
   Image,
-  SafeAreaView,
+  StatusBar,
+  Text,
   TouchableOpacity,
   FlatList,
   StyleSheet,
-  Text,
 } from 'react-native';
-import { data } from '../../data';
+import { bookData } from '../../bookData';
 
-const DATA = data;
-
-function Item({id, name, image, selected, onSelect}) {
+function Item({name, image}) {
   return (
-    <TouchableOpacity
-    onPress={() => onSelect(id)}
-      style={[
-        styles.item,
-        {backgroundColor: selected ? '#6e3b6e' : '#f9c2ff'},
-      ]}>
-    <View style={styles.container}>
+    <View>
+      <StatusBar barStyle = "dark-content" backgroundColor = "white"/>
       <Image
-        source={{uri: image}}
         style={styles.image}
+        source={{uri: image}}
       />
-
-<Text style={styles.name}>{name}</Text>
     </View>
-  </TouchableOpacity>
   );
 }
 
-export default function App() {
+export default function App({navigation}) {
   const [selected, setSelected] = React.useState(new Map());
 
   const onSelect = React.useCallback(
@@ -50,19 +40,27 @@ export default function App() {
   return (
     <View style={styles.container}>
       <FlatList
-        data={DATA}
+        data={bookData}
         renderItem={({item}) => (
+          <TouchableOpacity
+          style={[styles.button]}
+          onPress={() => navigation.navigate(item.place)}>
           <Item
+            place={item.place}
             id={item.id}
             name={item.name}
             image={item.image}
             selected={!!selected.get(item.id)}
             onSelect={onSelect}
           />
+          <View style={styles.textView}>
+          <Text style={styles.text}>{item.name}</Text>
+          </View>
+          </TouchableOpacity>
+
         )}
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={item => item.id}
         extraData={selected}
-        numColumns={2}
       />
     </View>
   );
@@ -71,25 +69,37 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#a1bfc3',
+    paddingRight: 20,
+    paddingLeft: 20,
+
   },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    margin: 5,
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  name: {
-    // fontSize: 30,
+  textView: {
+    elevation: 8,
+    backgroundColor: '#1183ca',
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    marginBottom: 20,
+    marginTop: 10,
+  },
+  text: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    color: 'white',
   },
   image: {
-    resizeMode: 'cover',
-    width: 138,
-    height: 178,
-    alignItems: 'center',
-    margin: 5,
     justifyContent: 'center',
-  }
+    alignItems: 'center',
+    width: 180,
+    height: 300,
+  },
 });

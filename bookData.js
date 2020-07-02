@@ -5,18 +5,18 @@ import coverBook2 from './src/coverBook/coverBook2';
 import coverBook4 from './src/coverBook/coverBook4';
 
 /* eslint-disable prettier/prettier */
-export const data = [
+export const bookData = [
   {
     name: 'Alice in Wonderland',
     image: `data:image/gif;base64,${coverBook1}`,
     id: 'Alice in Wonderland',
-    place: 'AliceInWonderland',
+    place: 'BOOK1',
   },
   {
     name: 'Backpacking around Eastern Europe',
     image: `data:image/gif;base64,${coverBook2}`,
     id: 'Backpacking around Eastern Europe',
-    place: 'AliceInWonderland',
+    place: 'BOOK2',
 
 
   },
@@ -24,7 +24,7 @@ export const data = [
     name: 'From Zero to One Million Dollars in a Year',
     image: `data:image/gif;base64,${coverBook3}`,
     id: 'From Zero to One Million Dollars in a Year',
-    place: 'AliceInWonderland',
+    place: 'BOOK3',
 
 
   },
@@ -32,7 +32,7 @@ export const data = [
     name: 'Best Sandwich Recipes from Around the World',
     image: `data:image/gif;base64,${coverBook4}`,
     id: 'Best Sandwich Recipes from Around the World',
-    place: 'AliceInWonderland',
+    place: 'BOOK4',
 
 
   },
@@ -40,7 +40,7 @@ export const data = [
     name: "Dude, Where's My Car?",
     image: `data:image/gif;base64,${coverBook3}`,
     id: 'Dude, Where\'s My Car?',
-    place: 'AliceInWonderland',
+    place: 'BOOK5',
 
 
   },
@@ -48,7 +48,7 @@ export const data = [
     name: 'Poems From The South West',
     image: `data:image/gif;base64,${coverBook4}`,
     id: 'Poems From The South West',
-    place: 'AliceInWonderland',
+    place: 'BOOK6',
 
 
   },
